@@ -1,0 +1,14 @@
+{
+    "name": "TimeKeeping",
+    "alias": "timekeeping",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\TimeKeeping\\Providers\\TimeKeepingServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

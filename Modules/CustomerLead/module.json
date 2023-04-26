@@ -1,0 +1,14 @@
+{
+    "name": "CustomerLead",
+    "alias": "customerlead",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\CustomerLead\\Providers\\CustomerLeadServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

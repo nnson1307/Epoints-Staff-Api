@@ -1,0 +1,25 @@
+{
+    "name": "nwidart/timekeeping",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\TimeKeeping\\Providers\\TimeKeepingServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\TimeKeeping\\": ""
+        }
+    }
+}

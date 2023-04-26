@@ -1,0 +1,166 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: staff-api
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: staff-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: staff-api
+    spec:
+      containers:
+        - name: staff-api
+          image: <<CR_URL>>/staff-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+                cpu: "#{pod_cpu_request}#"
+            limits:
+                cpu: "#{pod_cpu_limit}#"
+          env:
+            - name: APP_ENV
+              value: "#{app_env}#"
+            - name: APP_NAME
+              value: "#{app_name}#"
+            - name: APP_KEY
+              value: "#{app_key}#"
+            - name: APP_DEBUG
+              value: "#{app_debug}#"
+            - name: APP_LOG_LEVEL
+              value: "#{app_log_level}#"
+            - name: APP_URL
+              value: "#{app_url}#"
+            - name: DB_CONNECTION
+              value: "#{db_connection}#"
+            - name: DB_HOST
+              value: "#{db_host}#"
+            - name: DB_PORT
+              value: "#{db_port}#"
+            - name: DB_DATABASE
+              value: "#{db_database}#"
+            - name: DB_USERNAME
+              value: "#{db_username}#"
+            - name: DB_PASSWORD
+              value: "#{db_password}#"
+            - name: DB_CONNECTION_2
+              value: "#{db_connection_2}#"
+            - name: DB_HOST_2
+              value: "#{db_host_2}#"
+            - name: DB_PORT_2
+              value: "#{db_port_2}#"
+            - name: DB_DATABASE_2
+              value: "#{db_database_2}#"
+            - name: DB_USERNAME_2
+              value: "#{db_username_2}#"
+            - name: DB_PASSWORD_2
+              value: "#{db_password_2}#"
+            - name: BROADCAST_DRIVER
+              value: "#{broadcast_driver}#"
+            - name: CACHE_DRIVER
+              value: "#{cache_driver}#"
+            - name: SESSION_DRIVER
+              value: "#{session_driver}#"
+            - name: SESSION_LIFETIME
+              value: "#{session_lifetime}#"
+            - name: QUEUE_DRIVER
+              value: "#{queue_driver}#"
+            - name: QUEUE_CONNECTION
+              value: "#{queue_connection}#"
+            - name: REDIS_HOST
+              value: "#{redis_host}#"
+            - name: REDIS_PASSWORD
+              value: "#{redis_password}#"
+            - name: REDIS_PORT
+              value: "#{redis_port}#"
+            - name: MAIL_DRIVER
+              value: "#{mail_driver}#"
+            - name: MAIL_HOST
+              value: "#{mail_host}#"
+            - name: MAIL_PORT
+              value: "#{mail_port}#"
+            - name: MAIL_USERNAME
+              value: "#{mail_username}#"
+            - name: MAIL_PASSWORD
+              value: "#{mail_password}#"
+            - name: MAIL_ENCRYPTION
+              value: "#{mail_encryption}#"
+            - name: PUSHER_APP_ID
+              value: "#{pusher_app_id}#"
+            - name: PUSHER_APP_KEY
+              value: "#{pusher_app_key}#"
+            - name: PUSHER_APP_SECRET
+              value: "#{pusher_app_secret}#"
+            - name: PUSHER_APP_CLUSTER
+              value: "#{pusher_app_cluter}#"
+            - name: LOYALTY_API_URL
+              value: "#{loyalty_api_url}#"
+            - name: AWS_ACCESS_KEY_ID
+              value: "#{aws_access_key_id}#"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "#{aws_secret_access_key}#"
+            - name: AWS_DEFAULT_REGION
+              value: "#{aws_default_region}#"
+            - name: AWS_BUCKET
+              value: "#{aws_bucket}#"
+            - name: STORAGE_TYPEf
+              value: "#{storage_type}#"
+            - name: OP_SECRET
+              value: "#{op_secret}#"
+            - name: OP_SALT
+              value: "#{op_salt}#"
+            - name: JWT_SECRET
+              value: "#{jwt_secret}#"
+            - name: JWT_BLACKLIST_ENABLED
+              value: "#{jwt_backlist_enable}#"
+            - name: DOMAIN_PIOSPA
+              value: "#{domain_piospa}#"
+            - name: PIOSPA_QUEUE_URL
+              value: "#{piospa_queue_url}#"
+            - name: BASE_URL_API
+              value: "#{base_url_api}#"
+            - name: DOMAIN_API_EPOINTS
+              value: "#{domain_api_epoints}#"
+            - name: DOMAIN_ONCALL
+              value: "#{domain_oncall}#"
+            - name: NAE_SERVICE_URL
+              value: "#{nae_service_url}#"
+            - name: BASE_URL_SHARE_SERVICE
+              value: "#{base_url_share_service}#"
+            - name: DOMAIN_CHAT_EPOINTS
+              value: "#{domain_chat_epoints}#"
+            - name: REGISTER_BRAND_URL_DEFAULT
+              value: "#{register_brand_url_default}#"
+            - name: REGISTER_BRAND_DEFAULT
+              value: "#{register_brand_default}#"
+            - name: REGISTER_BRAND_CUSTOMER_SOURCE
+              value: "#{register_brand_customer_source}#"
+            - name: REGISTER_BRAND_PIPELINE_CODE
+              value: "#{register_brand_pipeline_code}#"
+            - name: REGISTER_BRAND_JOURNEY_CODE
+              value: "#{register_brand_journey_code}#"
+            - name: STAFF_QUEUE_URL
+              value: "#{staff_queue_url}#"
+      imagePullSecrets:
+        - name: cr-auth
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: staff-api
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+  selector:
+    app: staff-api

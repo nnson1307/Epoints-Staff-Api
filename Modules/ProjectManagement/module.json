@@ -1,0 +1,14 @@
+{
+    "name": "ProjectManagement",
+    "alias": "projectmanagement",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\ProjectManagement\\Providers\\ProjectManagementServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
